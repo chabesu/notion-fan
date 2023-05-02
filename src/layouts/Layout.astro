@@ -82,7 +82,9 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
         {
           coverImageURL && (
             <div class="cover">
-              <img src={coverImageURL} />
+              <a href={getNavLink('/')}>
+                <img src={coverImageURL} />
+              </a>
             </div>
           )
         }
@@ -118,7 +120,7 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
             </div>
           </header>
 
-          <slot name="main" class="article" />
+          <slot name="main" />
 
           <footer>
             <div>
