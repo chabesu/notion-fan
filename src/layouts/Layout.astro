@@ -118,7 +118,7 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
             </div>
           </header>
 
-          <slot name="main" />
+          <slot name="main" class="article" />
 
           <footer>
             <div>
@@ -131,9 +131,9 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
         </div>
       </main>
 
-      <aside>
+      <!-- <aside>
         <slot name="aside" />
-      </aside>
+      </aside> -->
     </div>
 
     {
@@ -159,6 +159,7 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     flex: 1;
     order: 2;
     justify-content: space-between;
+    background-color: #f5f5f5;
   }
   @media (max-width: 640px) {
     main {
@@ -191,7 +192,11 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
   }
 
   div.content {
+    background-color: #ffffff;
     padding: 20px 40px;
+    max-width: 56rem;
+    margin: 48px auto;
+    border-radius: 0.375rem;
   }
   @media (max-width: 640px) {
     div.content {
