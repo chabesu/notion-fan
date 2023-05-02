@@ -34,7 +34,7 @@ const id = buildHeadingId(block.Heading1)
     </details>
   ) : (
     <a href={`#${id}`} id={id}>
-      <h4>
+      <h4 id={id}>
         {block.Heading1.RichTexts.map((richText: interfaces.RichText) => (
           <RichText richText={richText} />
         ))}

@@ -5,6 +5,7 @@ import { getNavLink, getStaticFilePath, filePath } from '../lib/blog-helpers.ts'
 import '../styles/syntax-coloring.css'
 import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 import Darkmode from '../components/Darkmode.astro'
+import Tocbot from '../components/Tocbot.astro'
 
 export interface Props {
   title: string
@@ -114,48 +115,52 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
             </div>
           )
         }
+        <div class="main__container">
+          <div class="content">
+            <header>
+              <h1>
+                <a href={getNavLink('/')}>
+                  {
+                    database.Icon && database.Icon.Type === 'emoji' ? (
+                      <>
+                        <span>{database.Icon.Emoji}</span>
+                        {database.Title}
+                      </>
+                    ) : database.Icon && database.Icon.Type === 'external' ? (
+                      <>
+                        <img src={database.Icon.Url} />
+                        {database.Title}
+                      </>
+                    ) : database.Icon && database.Icon.Type === 'file' ? (
+                      <>
+                        <img src={customIconURL} class="custom-icon" />
+                        {database.Title}
+                      </>
+                    ) : (
+                      database.Title
+                    )
+                  }
+                </a>
+              </h1>
+              <div class="description">
+                {database.Description}
+              </div>
+            </header>
 
-        <div class="content">
-          <header>
-            <h1>
-              <a href={getNavLink('/')}>
-                {
-                  database.Icon && database.Icon.Type === 'emoji' ? (
-                    <>
-                      <span>{database.Icon.Emoji}</span>
-                      {database.Title}
-                    </>
-                  ) : database.Icon && database.Icon.Type === 'external' ? (
-                    <>
-                      <img src={database.Icon.Url} />
-                      {database.Title}
-                    </>
-                  ) : database.Icon && database.Icon.Type === 'file' ? (
-                    <>
-                      <img src={customIconURL} class="custom-icon" />
-                      {database.Title}
-                    </>
-                  ) : (
-                    database.Title
-                  )
-                }
-              </a>
-            </h1>
-            <div class="description">
-              {database.Description}
-            </div>
-          </header>
+            <slot name="main" />
 
-          <slot name="main" />
-
-          <footer>
-            <div>
-              <span>Powered by</span>
-              <a href="https://github.com/otoyo/astro-notion-blog"
-                >astro-notion-blog</a
-              >
-            </div>
-          </footer>
+            <footer>
+              <div>
+                <span>Powered by</span>
+                <a href="https://github.com/otoyo/astro-notion-blog"
+                  >astro-notion-blog</a
+                >
+              </div>
+            </footer>
+          </div>
+          <div class="sidebar__container">
+            <slot name="sidebar" />
+          </div>
         </div>
       </main>
 
@@ -169,6 +174,8 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
         <script src={getStaticFilePath('/scripts/fslightbox.js')} />
       )
     }
+
+    <Tocbot />
   </body>
 </html>
 
@@ -185,13 +192,37 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
 
   main {
     flex: 1;
-    order: 2;
+    /* order: 2; */
     justify-content: space-between;
     background-color: #f5f5f5;
   }
-  @media (max-width: 640px) {
+  /* @media (max-width: 640px) {
     main {
       order: 1;
+    }
+  } */
+
+  .main__container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 640px) {
+    .main__container {
+      margin-top: 0;
+    }
+  }
+
+  .sidebar__container {
+    position: sticky;
+    top: 100px;
+    height: 100%;
+  }
+  @media (max-width: 1200px) {
+    .sidebar__container {
+      display: none;
     }
   }
 
@@ -262,13 +293,12 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     background-color: #ffffff;
     padding: 20px 40px;
     max-width: 56rem;
-    margin: 48px auto;
+    width: 100%;
     border-radius: 0.375rem;
   }
   @media (max-width: 640px) {
     div.content {
       padding: 0 18px;
-      margin: 0 auto;
     }
   }
 
