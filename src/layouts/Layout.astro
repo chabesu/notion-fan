@@ -74,6 +74,12 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
       integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <GoogleAnalytics trackingId={PUBLIC_GA_TRACKING_ID} />
@@ -85,7 +91,12 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
               <a href={getNavLink('/')}>Notion Fan</a>
             </div>
             <ul class="nav__list">
-              <li><a href="https://twitter.com/ChabesuB">Twitter</a></li>
+              <li>
+                <a href="https://twitter.com/ChabesuB"
+                  ><i class="fa-brands fa-twitter fa-xl" style="color: #39b0fa;"
+                  ></i></a
+                >
+              </li>
             </ul>
           </div>
         </nav>
