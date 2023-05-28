@@ -120,6 +120,10 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
     </div>
   </div>
 
+  <div slot="sidebar_share__container" class="sidebar_share__container">
+    <TwitterShareButton post={post} />
+  </div>
+
   <div slot="sidebar" class="sidebar__container">
     <div class="js-toc"></div>
   </div>
@@ -152,5 +156,19 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
 
   .share__container {
     margin-top: 2rem;
+  }
+
+  .sidebar_share__container {
+    position: sticky;
+    top: 100px;
+    height: 100%;
+    width: 50px;
+    margin-left: 0.5rem;
+  }
+
+  @media (max-width: 769px) {
+    .sidebar_share__container {
+      display: none;
+    }
   }
 </style>
