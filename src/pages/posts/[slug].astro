@@ -20,6 +20,7 @@ import Layout from '../../layouts/Layout.astro'
 import PostDate from '../../components/PostDate.astro'
 import PostTags from '../../components/PostTags.astro'
 import PostTitle from '../../components/PostTitle.astro'
+import PostFeaturedImage from '../../components/PostFeaturedImage.astro'
 import PostBody from '../../components/PostBody.astro'
 import PostRelativeLink from '../../components/PostRelativeLink.astro'
 import BlogPostsLink from '../../components/BlogPostsLink.astro'
@@ -104,6 +105,7 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
       <PostDate post={post} />
       <PostTags post={post} />
       <PostTitle post={post} enableLink={false} />
+      <PostFeaturedImage post={post} />
       <PostBody blocks={blocks} />
       <PostTags post={post} />
 
@@ -117,7 +119,7 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
     <div class="js-toc"></div>
   </div>
 
-  <div slot="aside" class="aside">
+  <!-- <div slot="aside" class="aside">
     <BlogPostsLink
       heading="Posts in the same category"
       posts={postsHavingSameTag.filter(
@@ -127,19 +129,19 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
     <BlogPostsLink heading="Recommended" posts={rankedPosts} />
     <BlogPostsLink heading="Latest posts" posts={recentPosts} />
     <BlogTagsLink heading="Categories" tags={tags} />
-  </div>
+  </div> -->
 </Layout>
 
 <style>
-.sidebar__container {
-  position: sticky;
-  top: 100px;
-  height: 100%;
-  width: 300px;
-}
-@media (max-width: 1200px) {
   .sidebar__container {
-    display: none;
+    position: sticky;
+    top: 100px;
+    height: 100%;
+    width: 300px;
   }
-}
+  @media (max-width: 1200px) {
+    .sidebar__container {
+      display: none;
+    }
+  }
 </style>
