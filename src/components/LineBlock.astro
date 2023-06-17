@@ -13,19 +13,19 @@ const { post } = Astro.props
         <div class="line-bc">
             <div class="balloon6">
                 <div class="faceicon">
-                    <img src="favicon.ico" />
+                    <img src="https://zatsugaku-engineer.com/wp-content/uploads/2022/07/cropped-f81fd2e4c52864042852c112ce927ae2.png" />
                 </div>
                 <div class="chatting">
-                <div class="says">
-                    <p>Notion AI<br />この記事を要約して</p>
-                </div>
+                  <div class="says">
+                      <p>Notion AI<br />この記事を要約して</p>
+                  </div>
                 </div>
             </div>
 
             <div class="mycomment">
                 <p>
-                    <span class="ai-title">【Notion AI の要約】</span>
                     {post.Excerpt ? post.Excerpt : '要約がありません'}
+                    <span class="ai-title">（Notion AI の要約）</span>
                 </p>
             </div>
         </div>
