@@ -9,116 +9,121 @@ const { post } = Astro.props
 ---
 
 {
-    post.Excerpt ? (
-        <div class="line-bc">
-            <div class="balloon6">
-                <div class="faceicon">
-                    <img src="https://zatsugaku-engineer.com/wp-content/uploads/2022/07/cropped-f81fd2e4c52864042852c112ce927ae2.png" />
-                </div>
-                <div class="chatting">
-                  <div class="says">
-                      <p>Notion AI<br />この記事を要約して</p>
-                  </div>
-                </div>
-            </div>
-
-            <div class="mycomment">
-                <p>
-                    {post.Excerpt ? post.Excerpt : '要約がありません'}
-                    <span class="ai-title">（Notion AI の要約）</span>
-                </p>
-            </div>
+  post.Excerpt ? (
+    <div class="line-bc">
+      <div class="balloon6">
+        <div class="faceicon">
+          <img src="https://zatsugaku-engineer.com/wp-content/uploads/2022/07/cropped-f81fd2e4c52864042852c112ce927ae2.png" />
         </div>
-    ) : (
-        ""
-    )
+        <div class="chatting">
+          <div class="says">
+            <p>
+              Notion AI
+              <br />
+              この記事を要約して
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mycomment">
+        <p>
+          {post.Excerpt ? post.Excerpt : '要約がありません'}
+          <span class="ai-title">（Notion AI の要約）</span>
+        </p>
+      </div>
+    </div>
+  ) : (
+    ''
+  )
 }
 
 <style>
-.line-bc {
-  padding: 20px 10px;
-  width: 100%;
-  margin: 15px auto;
-  text-align: right;
-  font-size: 14px;
-  background: #7da4cd;
-  border-radius: 0.375rem;
-}
+  .line-bc {
+    padding: 20px 10px;
+    width: 100%;
+    margin: 15px auto;
+    text-align: right;
+    font-size: 14px;
+    background: #7da4cd;
+    border-radius: 0.375rem;
+  }
 
-.balloon6 {
-  width: 100%;
-  margin: 10px 0;
-  overflow: hidden;
-}
+  .balloon6 {
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+  }
 
-.balloon6 .faceicon {
-  float: left;
-  margin-right: -50px;
-  width: 40px;
-}
+  .balloon6 .faceicon {
+    float: left;
+    margin-right: -50px;
+    width: 40px;
+  }
 
-.balloon6 .faceicon img{
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-}
-.balloon6 .chatting {
-  width: 100%;
-  text-align: left;
-}
-.says {
-  display: inline-block;
-  position: relative; 
-  margin: 0 0 0 55px;
-  padding: 10px;
-  max-width: 250px;
-  border-radius: 12px;
-  background: #edf1ee;
-}
+  .balloon6 .faceicon img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  .balloon6 .chatting {
+    width: 100%;
+    text-align: left;
+  }
+  .says {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 0 55px;
+    padding: 10px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #edf1ee;
+  }
 
-.says:after {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  top: 10px; 
-  left: -19px;
-  border: 8px solid transparent;
-  border-right: 18px solid #edf1ee;
-  -webkit-transform: rotate(10deg);
-  transform: rotate(10deg);
-}
-.says p {
-  margin: 0;
-  padding: 0;
-}
+  .says:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: -19px;
+    border: 8px solid transparent;
+    border-right: 18px solid #edf1ee;
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  .says p {
+    margin: 0;
+    padding: 0;
+    color: #222;
+  }
 
-.mycomment {
-  margin: 10px 0;
-}
-.mycomment p {
-  display: inline-block;
-  position: relative; 
-  margin: 0 10px 0 0;
-  padding: 8px;
-  max-width: 500px;
-  border-radius: 12px;
-  background: #30e852;
-  text-align: left;
-}
+  .mycomment {
+    margin: 10px 0;
+  }
+  .mycomment p {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px 0 0;
+    padding: 8px;
+    max-width: 500px;
+    border-radius: 12px;
+    background: #30e852;
+    text-align: left;
+    color: #222;
+  }
 
-.mycomment p:after {
-  content: "";
-  position: absolute;
-  top: 10px; 
-  right: -19px;
-  border: 8px solid transparent;
-  border-left: 18px solid #30e852;
-  -webkit-transform: rotate(-10deg);
-  transform: rotate(-10deg);
-}
+  .mycomment p:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -19px;
+    border: 8px solid transparent;
+    border-left: 18px solid #30e852;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+  }
 
-.ai-title {
+  .ai-title {
     display: block;
-}
-
+  }
 </style>
