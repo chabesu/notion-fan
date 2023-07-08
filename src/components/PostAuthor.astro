@@ -1,0 +1,78 @@
+---
+import { Post } from '../lib/interfaces.ts'
+
+export interface Props {
+  post: Post
+}
+
+const { post } = Astro.props
+
+const authors = [
+  {
+    id: 'c2f976ab-4882-4e4e-a80e-91d829bd59ca',
+    name: 'チャベス',
+    image: '../../icon/chabesu.png',
+    twitter_id: '@ChabesuB',
+    twitter_url: 'https://twitter.com/ChabesuB',
+  },
+  {
+    id: 'f5bc56c8-06de-4635-b457-b3dfe24ece4d',
+    name: 'テストチャベス',
+    image: '../../icon/test-chabesu.png',
+    twitter_id: '@ChabesuB',
+    twitter_url: 'https://twitter.com/ChabesuB',
+  },
+]
+
+const authorData = authors.filter((obj) => obj.id === post.Author)
+const authorName = authorData[0].name
+const authorIcon = authorData[0].image
+const twitterId = authorData[0].twitter_id
+const twitterUrl = authorData[0].twitter_url
+---
+
+<div class="article-author">
+  <img src={authorIcon} alt="author-icon" />
+  <div class="article-author-discription">
+    <div class="author-title">Author</div>
+    <div class="author-name">{authorName}</div>
+    <div><a href={twitterUrl} target="_blank">{twitterId}</a></div>
+  </div>
+</div>
+
+<style>
+  .article-author {
+    background-color: rgba(227, 226, 224, 0.5);
+    color: #333;
+    padding: 30px 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    display: flex;
+    gap: 30px;
+  }
+
+  .article-author a {
+    color: #77aff1;
+  }
+
+  .article-author img {
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+  }
+
+  .article-author-discription {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .author-title {
+    color: #a0a0a0;
+  }
+
+  .author-name {
+    font-weight: bold;
+  }
+</style>

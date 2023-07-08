@@ -24,6 +24,7 @@ import PostTitle from '../../components/PostTitle.astro'
 import LineBlock from '../../components/LineBlock.astro'
 import PostBody from '../../components/PostBody.astro'
 import PostRelativeLink from '../../components/PostRelativeLink.astro'
+import PostAuthor from '../../components/PostAuthor.astro'
 import BlogPostsLink from '../../components/BlogPostsLink.astro'
 import BlogTagsLink from '../../components/BlogTagsLink.astro'
 import TwitterShareButton from '../../components/TwitterShareButton.astro'
@@ -115,6 +116,8 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
       <div class="share__container">
         <TwitterShareButton post={post} />
       </div>
+
+      <PostAuthor post={post} />
 
       <footer>
         <PostRelativeLink prevPost={prevPost} nextPost={nextPost} />
