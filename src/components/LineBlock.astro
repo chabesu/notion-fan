@@ -28,7 +28,7 @@ const { post } = Astro.props
 
       <div class="mycomment">
         <p>
-          <span class="ai-title">【Notion AI の要約】</span>
+          <span class="line-block">【Notion AI の要約】</span>
           {post.Excerpt ? post.Excerpt : '要約がありません'}
           <span class="line-block" />
           {post.Characters
@@ -127,7 +127,7 @@ const { post } = Astro.props
     transform: rotate(-10deg);
   }
 
-  .ai-title {
+  .line-block {
     display: block;
   }
 </style>
