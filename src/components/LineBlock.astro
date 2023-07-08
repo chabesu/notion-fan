@@ -28,8 +28,12 @@ const { post } = Astro.props
 
       <div class="mycomment">
         <p>
+          <span class="ai-title">【Notion AI の要約】</span>
           {post.Excerpt ? post.Excerpt : '要約がありません'}
-          <span class="ai-title">（Notion AI の要約）</span>
+          <span class="line-block" />
+          {post.Characters
+            ? '【記事の文字数】' + post.Characters + ' 文字'
+            : ''}
         </p>
       </div>
     </div>

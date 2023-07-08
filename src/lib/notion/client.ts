@@ -868,6 +868,7 @@ function _buildPost(pageObject: responses.PageObject): Post {
         : '',
     FeaturedImage: featuredImage,
     Rank: prop.Rank.number ? prop.Rank.number : 0,
+    Characters: prop.Characters.number ? prop.Characters.number : 0,
   }
 
   return post
