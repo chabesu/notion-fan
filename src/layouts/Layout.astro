@@ -1,9 +1,14 @@
 ---
 import { PUBLIC_GA_TRACKING_ID, ENABLE_LIGHTBOX } from '../server-constants.ts'
-import { getDatabase, getAllTags } from '../lib/notion/client.ts'
+import {
+  getDatabase,
+  getAllTags,
+  getRankedPosts,
+} from '../lib/notion/client.ts'
 import { getNavLink, getStaticFilePath, filePath } from '../lib/blog-helpers.ts'
 import '../styles/syntax-coloring.css'
 import BlogTagsLink from '../components/BlogTagsLink.astro'
+import BlogPostsLink from '../components/BlogPostsLink.astro'
 import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 import Darkmode from '../components/Darkmode.astro'
 import Tocbot from '../components/Tocbot.astro'
@@ -18,7 +23,11 @@ export interface Props {
 
 const { title = '', description = '', path = '/', ogImage = '' } = Astro.props
 
-const [database, tags] = await Promise.all([getDatabase(), getAllTags()])
+const [database, tags, rankedPosts] = await Promise.all([
+  getDatabase(),
+  getAllTags(),
+  getRankedPosts(),
+])
 
 const siteTitle = title ? `${title} - ${database.Title}` : database.Title
 const siteDescription = description ? description : database.Description
@@ -185,7 +194,10 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
             </li>
           </ul>
         </div>
-        <BlogTagsLink heading="TAG" tags={tags} />
+        <div class="footer-contents">
+          <BlogTagsLink heading="TAG" tags={tags} />
+          <BlogPostsLink heading="おすすめの記事" posts={rankedPosts} />
+        </div>
       </div>
       <div class="licence">
         <span>Powered by</span>
@@ -380,6 +392,11 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
 
   .footer-logo {
     padding-left: 0.4rem;
+    min-width: 10rem;
+  }
+
+  .footer-contents {
+    overflow: hidden;
   }
 
   .licence,
