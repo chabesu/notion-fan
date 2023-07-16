@@ -1,8 +1,9 @@
 ---
 import { PUBLIC_GA_TRACKING_ID, ENABLE_LIGHTBOX } from '../server-constants.ts'
-import { getDatabase } from '../lib/notion/client.ts'
+import { getDatabase, getAllTags } from '../lib/notion/client.ts'
 import { getNavLink, getStaticFilePath, filePath } from '../lib/blog-helpers.ts'
 import '../styles/syntax-coloring.css'
+import BlogTagsLink from '../components/BlogTagsLink.astro'
 import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 import Darkmode from '../components/Darkmode.astro'
 import Tocbot from '../components/Tocbot.astro'
@@ -16,7 +17,7 @@ export interface Props {
 
 const { title = '', description = '', path = '/', ogImage = '' } = Astro.props
 
-const database = await getDatabase()
+const [database, tags] = await Promise.all([getDatabase(), getAllTags()])
 
 const siteTitle = title ? `${title} - ${database.Title}` : database.Title
 const siteDescription = description ? description : database.Description
@@ -150,15 +151,6 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
             </header>
 
             <slot name="main" />
-
-            <footer>
-              <div>
-                <span>Powered by</span>
-                <a href="https://github.com/otoyo/astro-notion-blog"
-                  >astro-notion-blog</a
-                >
-              </div>
-            </footer>
           </div>
           <slot name="sidebar" />
         </div>
@@ -168,6 +160,39 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
         <slot name="aside" />
       </aside> -->
     </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <div class="nav__logo">
+            <a href={getNavLink('/')}>Notion Fan</a>
+          </div>
+          <div class="description">
+            {database.Description}
+          </div>
+          <ul class="nav__list">
+            <li>
+              <a href="https://twitter.com/ChabesuB"
+                ><i class="fa-brands fa-twitter fa-lg" style="color: #39b0fa;"
+                ></i></a
+              >
+            </li>
+            <li>
+              <a href={getNavLink('/contact')}
+                ><i class="fa-regular fa-envelope fa-lg"></i></a
+              >
+            </li>
+          </ul>
+        </div>
+        <BlogTagsLink heading="TAG" tags={tags} />
+      </div>
+      <div class="licence">
+        <span>Powered by</span>
+        <a href="https://github.com/otoyo/astro-notion-blog"
+          >astro-notion-blog</a
+        >
+      </div>
+    </footer>
 
     {
       ENABLE_LIGHTBOX && (
@@ -208,11 +233,13 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     justify-content: center;
     gap: 30px;
     margin-top: 48px;
+    margin-bottom: 48px;
   }
 
   @media (max-width: 640px) {
     .main__container {
       margin-top: 0;
+      margin-bottom: 0;
     }
   }
 
@@ -239,6 +266,7 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     display: flex;
     gap: 18px;
     list-style-type: none;
+    padding: 0;
   }
 
   .nav__list a {
@@ -250,9 +278,6 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     .nav__inner {
       padding-left: 14px;
       padding-right: 14px;
-    }
-    .nav__logo {
-      font-size: 1.1rem;
     }
   }
 
@@ -331,22 +356,35 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     font-size: 0.95rem;
   }
 
-  main footer {
-    margin: 30px 0 10px;
-    text-align: center;
-    font-size: 0.75rem;
+  footer {
+    padding: 2rem;
   }
+
+  .footer-container {
+    display: flex;
+    gap: 2rem;
+  }
+
   @media (max-width: 640px) {
-    main footer {
-      margin: 0 auto 30px;
+    footer {
+      padding: 0.5rem;
+    }
+    .footer-container {
+      display: block;
+    }
+    .footer-logo {
+      margin-bottom: 1.5rem;
     }
   }
-  main footer span {
-    color: #777;
+
+  .footer-logo {
+    padding-left: 0.4rem;
   }
-  main footer a {
-    color: inherit;
-    text-decoration: underline;
+
+  .licence,
+  .licence a {
+    text-align: center;
+    color: #aaa;
   }
 </style>
 

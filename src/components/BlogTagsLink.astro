@@ -12,35 +12,41 @@ export interface Props {
 const { heading, tags } = Astro.props
 ---
 
-<div class="blog-tags-link">
-  <h3>{heading}</h3>
-  {
-    tags.length === 0 ? (
-      <NoContents contents={tags} />
-    ) : (
-      <ul>
-        {tags.map((tag: SelectProperty) => (
-          <li>
-            <a href={getTagLink(tag.name)} class={`tag ${tag.color}`}>
-              {tag.name}
-            </a>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+<div class="tags-container">
+  <h3 class="tags-heading">{heading}</h3>
+  <div class="blog-tags-link">
+    {
+      tags.length === 0 ? (
+        <NoContents contents={tags} />
+      ) : (
+        <ul>
+          {tags.map((tag: SelectProperty) => (
+            <li>
+              <a href={getTagLink(tag.name)} class={`tag ${tag.color}`}>
+                {tag.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
 </div>
 
 <style>
-  .blog-tags-link {
-  }
-  .blog-tags-link h3 {
+  .tags-heading {
     margin: 0;
     padding-left: 0.4rem;
     color: #777;
     font-size: 0.95rem;
   }
+
+  .blog-tags-link {
+  }
+
   .blog-tags-link ul {
+    display: flex;
+    flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
     margin-top: 0.3rem;
