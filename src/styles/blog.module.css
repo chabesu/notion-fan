@@ -24,3 +24,37 @@
   padding: 0;
   border: 0;
 }
+
+.main_articles {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 640px) {
+  .main_articles {
+    display: block;
+  }
+}
+
+.main_card {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: 0.375rem;
+}
+
+.main_card:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.card_contents {
+  padding: 0rem 1rem 0.5rem;
+}
+
+.page_nation {
+  grid-column-end: span 2;
+}
+
+.tags_pages_header {
+  grid-column-start: span 2;
+}

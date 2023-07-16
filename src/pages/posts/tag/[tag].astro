@@ -38,9 +38,9 @@ const currentTag = posts[0].Tags.find((t) => t.name === tag)
 ---
 
 <Layout title={`Posts in ${tag}`} path={`/posts/tag/${tag}`}>
-  <div slot="main" class={styles.main}>
-    <header>
-      <h2><span class={`tag ${currentTag.color}`}>{tag}</span></h2>
+  <div slot="main" class:list={[styles.main_articles, styles.main]}>
+    <header class={styles.tags_pages_header}>
+      <h2><span class={`tag ${currentTag.color}`}>{tag}</span> の記事一覧</h2>
     </header>
 
     {
@@ -48,18 +48,19 @@ const currentTag = posts[0].Tags.find((t) => t.name === tag)
         <NoContents contents={posts} />
       ) : (
         posts.map((post) => (
-          <div class={styles.post} key={post.Slug}>
-            <PostDate post={post} />
-            <PostTags post={post} />
-            <PostTitle post={post} />
+          <div class:list={[styles.main_card, styles.post]} key={post.Slug}>
             <PostFeaturedImage post={post} />
-            <PostExcerpt post={post} />
+            <div class={styles.card_contents}>
+              <PostTitle post={post} />
+              <PostTags post={post} />
+              <PostDate post={post} />
+            </div>
           </div>
         ))
       )
     }
 
-    <footer>
+    <footer class={styles.page_nation}>
       <Pagination tag={tag} currentPage={1} numberOfPages={numberOfPages} />
     </footer>
   </div>
