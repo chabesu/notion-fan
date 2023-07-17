@@ -19,7 +19,6 @@
   "dependencies": {
     "@astrojs/react": "^2.2.0",
     "@astrojs/rss": "^2.4.2",
-    "@fontsource-variable/noto-sans-jp": "^5.0.5",
     "@notionhq/client": "^2.2.5",
     "@supercharge/promise-pool": "^2.4.0",
     "astro": "^2.5.6",

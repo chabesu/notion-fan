@@ -12,7 +12,6 @@ import BlogPostsLink from '../components/BlogPostsLink.astro'
 import GoogleAnalytics from '../components/GoogleAnalytics.astro'
 import Darkmode from '../components/Darkmode.astro'
 import Tocbot from '../components/Tocbot.astro'
-import '@fontsource-variable/noto-sans-jp'
 
 export interface Props {
   title: string
@@ -446,7 +445,8 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     min-height: 100vh;
     background: var(--bg);
     color: var(--fg);
-    font-family: 'Noto Sans JP Variable', sans-serif;
+    font-family: Helvetica Neue, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans,
+      Meiryo, sans-serif;
 
     /*background-image: radial-gradient(#ddd 1px, transparent 1px),
       radial-gradient(#ddd 1px, transparent 1px);*/
