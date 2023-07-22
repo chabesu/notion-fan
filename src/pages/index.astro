@@ -15,6 +15,7 @@ import PostFeaturedImage from '../components/PostFeaturedImage.astro'
 import Pagination from '../components/Pagination.astro'
 import BlogPostsLink from '../components/BlogPostsLink.astro'
 import BlogTagsLink from '../components/BlogTagsLink.astro'
+import { getPostLink } from '../lib/blog-helpers.ts'
 import styles from '../styles/blog.module.css'
 
 const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
@@ -33,6 +34,7 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
       ) : (
         posts.map((post) => (
           <div class:list={[styles.main_card, styles.post]} key={post.Slug}>
+            <a href={getPostLink(post.Slug)} class={styles.card_link}></a>
             <PostFeaturedImage post={post} />
             <div class={styles.card_contents}>
               <PostTitle post={post} />
