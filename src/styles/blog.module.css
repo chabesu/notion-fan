@@ -28,7 +28,13 @@
 .main_articles {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .main_articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 640px) {
@@ -40,6 +46,8 @@
 .main_card {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   border-radius: 0.375rem;
+  background-color: #F5F5F5;
+  color: #333333;
 }
 
 .main_card:hover {
@@ -52,9 +60,19 @@
 }
 
 .page_nation {
-  grid-column-end: span 2;
+  grid-column-end: span 3;
 }
 
 .tags_pages_header {
-  grid-column-start: span 2;
+  grid-column-start: span 3;
+}
+
+@media (max-width: 1024px) {
+  .page_nation {
+    grid-column-end: span 2;
+  }
+
+  .tags_pages_header {
+    grid-column-start: span 2;
+  }
 }

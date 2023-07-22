@@ -11,7 +11,7 @@
 layout.astro
 -------------------- */
   :root.darkmode {
-    --bg: #191919;
+    --bg: #1a1e2e;
     --fg: #d5d5d5;
     --accents-1: #864c1d;
     --accents-2: #f26000;
@@ -34,6 +34,11 @@ layout.astro
   .darkmode .footer-container a {
     color: var(--fg);
     background: var(--bg);
+  }
+
+  .darkmode div[key] {
+    color: var(--fg);
+    background: #2b3047;
   }
 
   .darkmode .js-toc .toc-link {
