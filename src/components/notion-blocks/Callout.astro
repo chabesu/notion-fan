@@ -13,7 +13,7 @@ const { block, headings } = Astro.props
 ---
 
 <div class={`callout ${snakeToKebab(block.Callout.Color)}`}>
-  <div>
+  <div class="emoji">
     {
       block.Callout.Icon.Type === 'emoji' ? (
         block.Callout.Icon.Emoji
@@ -22,7 +22,7 @@ const { block, headings } = Astro.props
       ) : null
     }
   </div>
-  <div>
+  <div class="contents">
     {
       block.Callout.RichTexts.map((richText: interfaces.RichText) => (
         <RichText richText={richText} />
@@ -55,11 +55,21 @@ const { block, headings } = Astro.props
     margin: 0;
     line-height: 1.5rem;
   }
-  .callout div:first-child {
-    margin-right: 0.7rem;
-  }
+
   .callout div:first-child img {
     width: 1.2rem;
     height: 1.2rem;
+  }
+
+  .emoji {
+    flex-shrink: 0;
+    width: 2rem;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    width: 90%;
   }
 </style>
