@@ -29,7 +29,9 @@ const [database, tags, rankedPosts] = await Promise.all([
 ])
 
 const siteTitle = title ? `${title} - ${database.Title}` : database.Title
-const siteDescription = description ? description : database.Description
+const siteDescription = description
+  ? description
+  : database.Description.map((richText) => richText.plain_text).join('')
 const siteURL = new URL(getNavLink(path), Astro.site).toString()
 const siteOGImage = new URL(
   getStaticFilePath('/default-og-image.png'),
@@ -155,7 +157,15 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
                 </a>
               </h1>
               <div class="description">
-                {database.Description}
+                {
+                  database.Description.map((richText) =>
+                    richText.href ? (
+                      <a href={richText.href}>{richText.plain_text}</a>
+                    ) : (
+                      richText.plain_text
+                    )
+                  )
+                }
               </div>
             </header>
 
@@ -177,7 +187,15 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
             <a href={getNavLink('/')}>チャベログ</a>
           </div>
           <div class="description">
-            {database.Description}
+            {
+              database.Description.map((richText) =>
+                richText.href ? (
+                  <a href={richText.href}>{richText.plain_text}</a>
+                ) : (
+                  richText.plain_text
+                )
+              )
+            }
           </div>
           <ul class="nav__list">
             <li>
@@ -363,9 +381,13 @@ const asidePaddingTop = coverImageURL ? '200px' : '60px'
     border-radius: var(--radius);
   }
 
-  main header div.description {
+  div.description {
     padding: 0.3rem 0 0.6rem;
     font-size: 0.95rem;
+  }
+
+  div.description a {
+    text-decoration: underline;
   }
 
   footer {

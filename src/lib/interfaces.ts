@@ -1,6 +1,6 @@
 export interface Database {
   Title: string
-  Description: string
+  Description: object
   Icon: FileObject | Emoji | null
   Cover: FileObject | null
 }

@@ -7,7 +7,9 @@ export async function get() {
 
   return rss({
     title: database.Title,
-    description: database.Description,
+    description: database.Description.map(
+      (richText) => richText.plain_text
+    ).join(''),
     site: import.meta.env.SITE,
     items: posts.map((post) => ({
       link: new URL(getPostLink(post.Slug), import.meta.env.SITE).toString(),

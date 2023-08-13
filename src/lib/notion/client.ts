@@ -468,9 +468,7 @@ export async function getDatabase(): Promise<Database> {
 
   const database: Database = {
     Title: res.title.map((richText) => richText.plain_text).join(''),
-    Description: res.description
-      .map((richText) => richText.plain_text)
-      .join(''),
+    Description: res.description,
     Icon: icon,
     Cover: cover,
   }
