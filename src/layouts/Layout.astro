@@ -34,7 +34,7 @@ const siteDescription = description
   : database.Description.map((richText) => richText.plain_text).join('')
 const siteURL = new URL(getNavLink(path), Astro.site).toString()
 const siteOGImage = new URL(
-  getStaticFilePath('/default-og-image.gif'),
+  getStaticFilePath('/default-og-image.png'),
   Astro.site
 )
 
